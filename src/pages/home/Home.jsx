@@ -6,8 +6,9 @@ import FeaturedProperties from '../../components/featuredProperties/FeaturedProp
 import MailList from '../../components/mailList/MailList';
 import Footer from '../../components/footer/Footer';
 import './home.css';
-
+// =================================== X =================================
 export default function Home() {
+  //================================RETURN
   return (
     <>
       <div>
