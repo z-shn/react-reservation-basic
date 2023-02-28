@@ -4,7 +4,7 @@ export default function Navbar() {
   return (
     <div className="navbar">
       <div className="navContainer">
-        <span className="logo">zed booking</span>
+        <span className="logo">Z-Booking.com</span>
         <div className="navItems">
           <button className="navButton">Register</button>
           <button className="navButton">Login</button>
