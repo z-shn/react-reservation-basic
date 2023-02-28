@@ -19,7 +19,12 @@ import {
 import { DateRange } from 'react-date-range';
 import 'react-date-range/dist/styles.css'; // main css file
 import 'react-date-range/dist/theme/default.css'; // theme css file
+import { Navigate, useNavigate } from 'react-router-dom';
+
+// =================================== X =================================
+
 function Header({ type }) {
+  const [destination, setDestination] = useState('');
   const [openDate, setOpenDate] = useState(false);
   const [dateState, setDateState] = useState([
     {
@@ -43,6 +48,15 @@ function Header({ type }) {
       };
     });
   };
+
+  const navigate = useNavigate();
+
+  const handleSearch = () => {
+    navigate('/hotels', { state: { destination, dateState, options } });
+  };
+
+  //================================RETURN
+
   return (
     <div className="header">
       <div
@@ -72,6 +86,7 @@ function Header({ type }) {
             <span>Airport Taxis</span>
           </div>
         </div>
+
         {type !== 'list' && (
           <>
             <h1 className="headerTitle">
@@ -89,6 +104,7 @@ function Header({ type }) {
                   type="text"
                   placeholder="where are you going?"
                   className="headerSearchInput"
+                  onChange={(e) => setDestination(e.target.value)}
                 />
               </div>
               <div className="headerSearchItem">
@@ -104,6 +120,7 @@ function Header({ type }) {
                 {openDate && (
                   <DateRange
                     editableDateInputs={true}
+                    minDate={new Date()}
                     onChange={(item) => setDateState([item.selection])}
                     moveRangeOnFirstSelection={false}
                     ranges={dateState}
@@ -188,7 +205,9 @@ function Header({ type }) {
                 )}
               </div>
               <div className="headerSearchItem">
-                <button className="headerButton">Search</button>
+                <button className="headerButton" onClick={handleSearch}>
+                  Search
+                </button>
               </div>
             </div>
           </>
